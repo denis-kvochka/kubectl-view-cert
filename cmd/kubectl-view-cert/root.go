@@ -12,7 +12,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 
-	"github.com/lmolas/kubectl-view-cert/internal/parse"
+	"github.com/denis-kvochka/kubectl-view-cert/internal/parse"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -347,6 +347,7 @@ func parseData(ns, secretName string, data map[string]interface{}, secretKey str
 			Issuer:       parsedCerts.Certificate.Issuer.String(),
 			SerialNumber: fmt.Sprintf("%x", parsedCerts.Certificate.SerialNumber),
 			Subject:      parsedCerts.Certificate.Subject.String(),
+			AlternativeNames: parsedCerts.Certificate.DNSNames,
 			Validity: CertificateValidity{
 				NotBefore: parsedCerts.Certificate.NotBefore,
 				NotAfter:  parsedCerts.Certificate.NotAfter,
@@ -363,6 +364,7 @@ func parseData(ns, secretName string, data map[string]interface{}, secretKey str
 			Issuer:       parsedCerts.CaCertificate.Issuer.String(),
 			SerialNumber: fmt.Sprintf("%x", parsedCerts.CaCertificate.SerialNumber),
 			Subject:      parsedCerts.CaCertificate.Subject.String(),
+			AlternativeNames: parsedCerts.Certificate.DNSNames,
 			Validity: CertificateValidity{
 				NotBefore: parsedCerts.CaCertificate.NotBefore,
 				NotAfter:  parsedCerts.CaCertificate.NotAfter,

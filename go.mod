@@ -1,4 +1,4 @@
-module github.com/lmolas/kubectl-view-cert
+module github.com/denis-kvochka/kubectl-view-cert
 
 go 1.19
 

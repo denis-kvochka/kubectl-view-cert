@@ -14,6 +14,7 @@ type Certificate struct {
 	Validity     CertificateValidity
 	Subject      string
 	IsCA         bool
+	AlternativeNames []string // Добавлено поле для хранения SANs
 }
 
 // CertificateValidity struct contains certificate date fields
